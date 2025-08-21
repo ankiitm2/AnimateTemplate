@@ -1,0 +1,368 @@
+/* Updated Hero.css with fixed text overflow */
+.hero {
+  padding: 8rem 0 5rem;
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(99, 102, 241, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(236, 72, 153, 0.15) 0%,
+      transparent 50%
+    );
+  z-index: 0;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  color: white;
+}
+
+.heading-line {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .heading-line {
+    white-space: normal;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(99, 102, 241, 0.2);
+  color: #6366f1;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.hero-text p {
+  font-size: clamp(1rem, 4vw, 1.25rem);
+  color: #d1d5db;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.4);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.6);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.mockup {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(17, 24, 39, 0.8);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.mockup-header {
+  background: rgba(31, 41, 55, 0.8);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mockup-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mockup-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mockup-dots span:first-child {
+  background: #ff5f57;
+}
+
+.mockup-dots span:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.mockup-dots span:last-child {
+  background: #28ca42;
+}
+
+.mockup-content {
+  padding: 2rem;
+  position: relative;
+}
+
+.mockup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.mockup-grid-item {
+  height: 80px;
+  background: rgba(31, 41, 55, 0.6);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.mockup-grid-item:nth-child(2n) {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.7),
+    rgba(236, 72, 153, 0.7)
+  );
+}
+
+.floating-card {
+  position: absolute;
+  background: rgba(17, 24, 39, 0.9);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+.floating-card span {
+  font-size: 1.5rem;
+}
+
+.floating-card p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0;
+  color: white;
+}
+
+.card-1 {
+  top: 30%;
+  left: -20px;
+  transform: rotate(-5deg);
+}
+
+.card-2 {
+  top: 50%;
+  right: -20px;
+  transform: rotate(3deg);
+}
+
+.card-3 {
+  bottom: 30%;
+  left: -20px;
+  transform: rotate(-3deg);
+}
+
+.hero-bg-element {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.elem-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.2) 0%,
+    transparent 70%
+  );
+  top: 10%;
+  left: 10%;
+}
+
+.elem-2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(236, 72, 153, 0.2) 0%,
+    transparent 70%
+  );
+  bottom: 20%;
+  right: 15%;
+}
+
+.elem-3 {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.2) 0%,
+    transparent 70%
+  );
+  top: 50%;
+  right: 30%;
+}
+
+@media (min-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .floating-card {
+    position: relative;
+    margin-bottom: 1rem;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+
+  .card-1,
+  .card-2,
+  .card-3 {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    transform: none;
+  }
+}

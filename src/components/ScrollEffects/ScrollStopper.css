@@ -1,0 +1,4 @@
+/* src/components/ScrollEffects/ScrollStopper.css */
+.scroll-stopper {
+  will-change: transform, opacity;
+}
