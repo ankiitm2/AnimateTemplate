@@ -72,6 +72,14 @@
   color: white;
 }
 
+.header-actions .btn-secondary {
+  color: white;
+}
+
+.header-actions .btn-secondary:hover {
+  color: black;
+}
+
 @media (max-width: 768px) {
   .nav {
     position: absolute;

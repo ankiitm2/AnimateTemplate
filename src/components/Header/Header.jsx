@@ -22,7 +22,7 @@ const Header = () => {
             transition={{ type: "spring", stiffness: 400 }}
           >
             <Sparkles size={20} />
-            <span>Modern</span>
+            <span>Fishy</span>
           </motion.div>
 
           <nav className={`nav ${isOpen ? "nav-open" : ""}`}>
