@@ -1,27 +1,52 @@
-// Updated Hero.jsx with fixed text overflow
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Play, Sparkles } from "lucide-react";
-import { useRef } from "react";
+// src/components/Hero/Hero.jsx (Enhanced with Interactive Visual)
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import {
+  ArrowRight,
+  Play,
+  Sparkles,
+  MousePointer,
+  Zap,
+  Heart,
+} from "lucide-react";
+import { useRef, useState } from "react";
 import OverlapReveal from "../ScrollEffects/OverlapReveal";
 import ScrollStopper from "../ScrollEffects/ScrollStopper";
 import "./Hero.css";
 
 const Hero = () => {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
+  const [isHovered, setIsHovered] = useState(false);
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  // Mouse position tracking for parallax effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const handleMouseMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    mouseX.set(event.clientX - rect.left);
+    mouseY.set(event.clientY - rect.top);
+  };
+
+  // Transform mouse position for various effects
+  const rotateX = useTransform(mouseY, [0, 600], [5, -5]);
+  const rotateY = useTransform(mouseX, [0, 800], [-5, 5]);
+  const backgroundPos = useTransform(
+    [mouseX, mouseY],
+    ([x, y]) => `${50 + x / 40}% ${50 + y / 40}%`
+  );
 
   return (
-    <section className="hero" ref={containerRef}>
+    <section
+      className="hero"
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <ScrollStopper stopPoint={0.3}>
         <div className="container">
           <div className="hero-content">
-            <motion.div className="hero-text" style={{ y, opacity }}>
+            <motion.div className="hero-text">
               <motion.div
                 className="badge"
                 initial={{ scale: 0 }}
@@ -102,113 +127,166 @@ const Hero = () => {
 
             <motion.div
               className="hero-visual"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+              style={{
+                rotateX,
+                rotateY,
+              }}
+              transition={{ type: "spring", damping: 15 }}
             >
-              <div className="mockup">
-                <div className="mockup-header">
-                  <div className="mockup-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+              {/* Interactive Website Mockup */}
+              <div className="interactive-mockup">
+                <div className="browser-window">
+                  <div className="browser-header">
+                    <div className="browser-dots">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
                   </div>
-                </div>
-                <div className="mockup-content">
-                  <motion.div
-                    className="floating-card card-1"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <span>🔥</span>
-                    <p>viral content</p>
-                  </motion.div>
 
-                  <motion.div
-                    className="floating-card card-2"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <span>🚀</span>
-                    <p>growth</p>
-                  </motion.div>
-
-                  <motion.div
-                    className="floating-card card-3"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 1.2 }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <span>💫</span>
-                    <p>engagement</p>
-                  </motion.div>
-
-                  <div className="mockup-grid">
-                    {[...Array(9)].map((_, i) => (
+                  <div className="browser-content">
+                    {/* Animated Hero Section in the Mockup */}
+                    <div className="mockup-hero">
                       <motion.div
-                        key={i}
-                        className="mockup-grid-item"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.5 + i * 0.05 }}
-                        whileHover={{
-                          scale: 1.1,
-                          backgroundColor: i % 2 === 0 ? "#8b5cf6" : "#ec4899",
-                        }}
-                      ></motion.div>
-                    ))}
+                        className="mockup-title"
+                        animate={
+                          isHovered
+                            ? { color: "#8b5cf6" }
+                            : { color: "#ffffff" }
+                        }
+                        transition={{ duration: 0.5 }}
+                      >
+                        Your Brand Here
+                      </motion.div>
+
+                      <motion.div
+                        className="mockup-cta"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Get Started
+                      </motion.div>
+                    </div>
+
+                    {/* Floating Interactive Elements */}
+                    <motion.div
+                      className="floating-element element-1"
+                      animate={{
+                        y: [0, -15, 0],
+                        rotate: [0, 5, 0],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                    >
+                      <Zap size={24} />
+                    </motion.div>
+
+                    <motion.div
+                      className="floating-element element-2"
+                      animate={{
+                        y: [0, 15, 0],
+                        rotate: [0, -5, 0],
+                      }}
+                      transition={{
+                        duration: 5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1,
+                      }}
+                      whileHover={{ scale: 1.2, rotate: -10 }}
+                    >
+                      <Heart size={24} fill="currentColor" />
+                    </motion.div>
+
+                    <motion.div
+                      className="floating-element element-3"
+                      animate={{
+                        y: [0, -10, 0],
+                        rotate: [0, 3, 0],
+                      }}
+                      transition={{
+                        duration: 6,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 2,
+                      }}
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                    >
+                      <Sparkles size={24} />
+                    </motion.div>
+
+                    {/* Interactive Grid */}
+                    <div className="interactive-grid">
+                      {[...Array(12)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          className="grid-cell"
+                          whileHover={{
+                            scale: 1.1,
+                            backgroundColor:
+                              i % 3 === 0
+                                ? "#8b5cf6"
+                                : i % 3 === 1
+                                ? "#ec4899"
+                                : "#6366f1",
+                          }}
+                          transition={{ duration: 0.2 }}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
+
+                {/* Glow effect */}
+                <motion.div
+                  className="mockup-glow"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
               </div>
+
+              {/* Instruction for user */}
+              <motion.div
+                className="interaction-hint"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2 }}
+              >
+                <MousePointer size={16} />
+                <span>Move around to interact</span>
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </ScrollStopper>
 
-      {/* Animated background elements */}
+      {/* Animated background elements with parallax */}
       <motion.div
         className="hero-bg-element elem-1"
-        animate={{
-          y: [0, -20, 0],
-          rotate: [0, 5, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        style={{ x: useTransform(mouseX, [0, 800], [-10, 10]) }}
       ></motion.div>
 
       <motion.div
         className="hero-bg-element elem-2"
-        animate={{
-          y: [0, 20, 0],
-          rotate: [0, -5, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
+        style={{ y: useTransform(mouseY, [0, 600], [-15, 15]) }}
       ></motion.div>
 
       <motion.div
         className="hero-bg-element elem-3"
-        animate={{
-          y: [0, -15, 0],
-          rotate: [0, 3, 0],
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
+        style={{
+          x: useTransform(mouseX, [0, 800], [15, -15]),
+          y: useTransform(mouseY, [0, 600], [10, -10]),
         }}
       ></motion.div>
     </section>

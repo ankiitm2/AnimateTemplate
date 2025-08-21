@@ -1,4 +1,4 @@
-/* Updated Hero.css with fixed text overflow */
+/* Enhanced Hero.css with Interactive Elements */
 .hero {
   padding: 8rem 0 5rem;
   background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
@@ -7,6 +7,11 @@
   align-items: center;
   position: relative;
   overflow: hidden;
+  cursor: none;
+}
+
+.hero:hover {
+  cursor: none;
 }
 
 .hero::before {
@@ -51,7 +56,6 @@
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  color: white;
 }
 
 .heading-line {
@@ -61,17 +65,179 @@
   white-space: nowrap;
 }
 
-/* For mobile devices */
-@media (max-width: 768px) {
-  .hero-text h1 {
-    font-size: clamp(2rem, 10vw, 3rem);
-  }
-
-  .heading-line {
-    white-space: normal;
-  }
+/* Interactive Visual Styles */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  position: relative;
 }
 
+.interactive-mockup {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  transform-style: preserve-3d;
+}
+
+.browser-window {
+  background: rgba(17, 24, 39, 0.9);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
+  transform: translateZ(20px);
+}
+
+.browser-header {
+  background: rgba(31, 41, 55, 0.9);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browser-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.browser-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.browser-dots span:nth-child(1) {
+  background: #ff5f57;
+}
+
+.browser-dots span:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.browser-dots span:nth-child(3) {
+  background: #28ca42;
+}
+
+.browser-content {
+  padding: 2rem;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mockup-hero {
+  text-align: center;
+  z-index: 3;
+}
+
+.mockup-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.mockup-cta {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.mockup-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.4);
+}
+
+.floating-element {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #8b5cf6;
+  z-index: 2;
+}
+
+.floating-element.element-1 {
+  top: 20%;
+  left: 10%;
+}
+
+.floating-element.element-2 {
+  bottom: 30%;
+  right: 15%;
+}
+
+.floating-element.element-3 {
+  top: 60%;
+  left: 20%;
+}
+
+.interactive-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.grid-cell {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.mockup-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.2) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: 1;
+  filter: blur(20px);
+}
+
+.interaction-hint {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+}
+
+/* Rest of the existing styles remain the same */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -171,124 +337,6 @@
   color: #9ca3af;
 }
 
-.hero-visual {
-  display: flex;
-  justify-content: center;
-}
-
-.mockup {
-  width: 100%;
-  max-width: 500px;
-  background: rgba(17, 24, 39, 0.8);
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-}
-
-.mockup-header {
-  background: rgba(31, 41, 55, 0.8);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.mockup-dots {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.mockup-dots span {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.mockup-dots span:first-child {
-  background: #ff5f57;
-}
-
-.mockup-dots span:nth-child(2) {
-  background: #ffbd2e;
-}
-
-.mockup-dots span:last-child {
-  background: #28ca42;
-}
-
-.mockup-content {
-  padding: 2rem;
-  position: relative;
-}
-
-.mockup-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-.mockup-grid-item {
-  height: 80px;
-  background: rgba(31, 41, 55, 0.6);
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.mockup-grid-item:nth-child(2n) {
-  background: linear-gradient(
-    135deg,
-    rgba(139, 92, 246, 0.7),
-    rgba(236, 72, 153, 0.7)
-  );
-}
-
-.floating-card {
-  position: absolute;
-  background: rgba(17, 24, 39, 0.9);
-  padding: 0.75rem;
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-  z-index: 3;
-}
-
-.floating-card span {
-  font-size: 1.5rem;
-}
-
-.floating-card p {
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin: 0;
-  color: white;
-}
-
-.card-1 {
-  top: 30%;
-  left: -20px;
-  transform: rotate(-5deg);
-}
-
-.card-2 {
-  top: 50%;
-  right: -20px;
-  transform: rotate(3deg);
-}
-
-.card-3 {
-  bottom: 30%;
-  left: -20px;
-  transform: rotate(-3deg);
-}
-
 .hero-bg-element {
   position: absolute;
   border-radius: 50%;
@@ -347,22 +395,7 @@
     justify-content: center;
   }
 
-  .floating-card {
-    position: relative;
-    margin-bottom: 1rem;
-    left: 0;
-    right: 0;
-    transform: none;
-  }
-
-  .card-1,
-  .card-2,
-  .card-3 {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    transform: none;
+  .interaction-hint {
+    display: none;
   }
 }
